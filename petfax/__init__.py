@@ -3,12 +3,20 @@ from flask import Flask
 def create_app(): 
     app = Flask(__name__)
 
+
+
+    # index route
     @app.route('/')
     def hello(): 
         return 'Hello, PetFax!'
 
-    # resister per blueprint
+    # register pet blueprint
     from . import pet
     app.register_blueprint(pet.bp)    
+
+
+    # register pet facts 
+    from . import fact
+    app.register_blueprint(fact.bp)
 
     return app
